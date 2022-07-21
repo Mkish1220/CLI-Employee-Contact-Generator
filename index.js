@@ -1,26 +1,19 @@
-
-
-// require all of your classes/constructors, (Manager, Engineer, Intern)
-const Manager = require("../lib/manager");
-const Engineer = require("../lib/engineer");
-const Intern = require("../lib/intern");
-const Employee = require("../lib/employee");
-
 // require packages needed (inquirer, path, fs)
 // / INDEX.JS //
 const inquirer = require("inquirer");
 const fs = require("fs");
-const jest = require("jest");
 const path = require("path");
+const util = require("util");
+
+// require all of your classes/constructors, (Manager, Engineer, Intern)
+const Manager = require("../lib/Manager");
+const Engineer = require("../lib/Engineer");
+const Intern = require("../lib/Intern");
+// const Employee = require("../lib/employee");
 const generateHTML = require("./src/generateHTML");
-
-
 // set up an empty array for the Team Members
 let teamArray = [];
 let teamStr = "";
-
-
-
 // set up functions for iniitalizing the app, creating a manager, determining which type of employee the user wants to add, adding each member type, and building the team
 
 // function for INITIALIZING ////////////////
@@ -88,16 +81,16 @@ function createTeam() {
             init();
         });
         }
-        function addEmployee() {
-            inquirer.prompt([
-                { type: "input", name: "name", message: "What is your employee's name?" }
-            ]).then((answers) => {
-                const employee = new Employee(answers.name, answers.id, answers.email, anwsers.getName(), answers.getID(), answers.getEmail(), answers.getRole());
-                team.push(employee);
-                console.log(team);
-                init();
-            });
-            }
+        // function addEmployee() {
+        //     inquirer.prompt([
+        //         { type: "input", name: "name", message: "What is your employee's name?" }
+        //     ]).then((answers) => {
+        //         const employee = new Employee(answers.name, answers.id, answers.email, anwsers.getName(), answers.getID(), answers.getEmail(), answers.getRole());
+        //         team.push(employee);
+        //         console.log(team);
+        //         init();
+        //     });
+        //     }
             function addEngineer() {
                 inquirer.prompt([
                     { type: "input", name: "name", message: "What is your engineer's name?" }

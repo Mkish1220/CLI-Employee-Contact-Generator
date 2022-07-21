@@ -6,10 +6,11 @@ const path = require("path");
 const util = require("util");
 
 // require all of your classes/constructors, (Manager, Engineer, Intern)
-const Manager = require("../lib/Manager");
-const Engineer = require("../lib/Engineer");
-const Intern = require("../lib/Intern");
-// const Employee = require("../lib/employee");
+const employee = require("./lib/employee");
+const { manager } = require("./lib/manager");
+const { engineer } = require("./lib/engineer");
+const { intern } = require("./lib/intern");
+
 const generateHTML = require("./src/generateHTML");
 // set up an empty array for the Team Members
 let teamArray = [];
@@ -23,13 +24,15 @@ let teamStr = "";
     // and prompt to ask questions
 
     function createManager() {
+        const questions = [
         inquirer.prompt([
-            { type: "input", name: "name", message: "What is your manager's name?" },
-            { type: "input", name: "id", message: "what is your manager's id?" },
-            { type: "input", name: "email", message: "what is your manager's email?" },
+            { type: "input", name: "name", message: "What is your employee's name?" },
+            { type: "input", name: "id", message: "what is your employee's id?" },
+            { type: "input", name: "email", message: "what is your employee's email?" },
+        ]),
      // once you finish your questions, you'll probably want to send those answers to a new instance of Manager (one of the classes you'll create and require above
-     ]).then((answers) => {
-    const manager = new Manager(answers.name, answers.id, answers.email, answers.getName(), answers.getId(), answers.getEmail(), answers.getRole());
+     ].then((answers) => {
+    const manager = new manager(answers.name, answers.id, answers.email, answers.getName(), answers.getId(), answers.getEmail(), answers.getRole());
     team.push(manager);
     console.log(team);
     init();
@@ -51,13 +54,13 @@ function createTeam() {
         // if they choose Intern, run addIntern function
         // if they no longer want to add members, you'll need to run the function that actually builds the team (creates the file, etc)
     ]).then((answers) => {
-        if (answers.employee === "Engineer") {
+        if (answers.employee === "engineer") {
             createEngineer();
-        } else if (answers.employee === "Intern") {
+        } else if (answers.employee === "intern") {
             createIntern();
-        } else if (answers.employee === "Employee") {
-            createEmployee();
-        } else if (answers.employee === "Manager") {
+        // } else if (answers.employee === "Employee") {
+        //     createEmployee();
+        } else if (answers.employee === "manager") {
             createManager();
         } else if (answers.employee === "None") {
             console.log("Your team is complete!");
@@ -73,9 +76,9 @@ function createTeam() {
     // push this new member into you team array
     function addIntern() {
         inquirer.prompt([
-            { type: "input", name: "name", message: "What is your intern's name?" }
+            { type: "input", name: "school", message: "What is your intern's School Name?" }
         ]).then((answers) => {
-            const intern = new Intern(answers.name, answers.id, answers.email, answers.getName(), answers.getId(), answers.getEmail(), answers.getRole());
+            const intern = new intern(answers.name, answers.id, answers.email, answers.getName(), answers.getId(), answers.getEmail(), answers.getSchool(), answers.getRole());
             team.push(intern);
             console.log(team);
             init();
@@ -93,9 +96,9 @@ function createTeam() {
         //     }
             function addEngineer() {
                 inquirer.prompt([
-                    { type: "input", name: "name", message: "What is your engineer's name?" }
+                    { type: "input", name: "github", message: "What is your engineer's Github Username?" }
                 ]).then((answers) => {
-                        const Engineer = new Engineer(answers.name, anwsers.id, answers.email, answers.getName(), answers.getId(), answers.getEmail(), answers.getRole(), answers.getGithub());
+                        const engineer = new engineer(answers.name, anwsers.id, answers.email, answers.getName(), answers.getId(), answers.getEmail(), answers.getRole(), answers.getGithub(), answers.getGithub());
                         team.push(engineer);
                         console.log(team);
                         init();
@@ -103,9 +106,9 @@ function createTeam() {
                 }
             function addManager() {
                 inquirer.prompt([
-                    { type: "input", name: "name", message: "What is your manager's name?" }
+                    { type: "input", name: "officeNumber", message: "What is your manager's Office Number?" }
                 ]).then((answers) => {
-                        const manager = new Manager(answers.name, anwsers.id, answers.email, anwsers.getName(), anwsers.getId(), anwsers.getEmail(), answers.getRole(), anwsers.getOfficeNumber());                        team.push(manager);
+                        const manager = new manager(answers.name, anwsers.id, answers.email, anwsers.getName(), anwsers.getId(), anwsers.getEmail(), answers.getRole(), anwsers.getOfficeNumber());                        team.push(manager);
                         console.log(team);
                          init();
                         });
@@ -127,4 +130,5 @@ function createTeam() {
             console.log("Your team has been built!");
         });
     }
-        createManager();
+   
+

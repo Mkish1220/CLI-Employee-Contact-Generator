@@ -3,7 +3,7 @@
  [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
   ## Description
-  🔍 The application will prompt the user for information about the employee and then information about the team members.
+  🔍 The application will prompt the user for information about the employee and then information about the team members. the user will be prompt with a variety of questions based on user input of type of employee. Once completed user is able to create a html file that will create an individual card for each type of employee. 
 
   ## Table of Contents
    * [Installation](#-Installation)
